@@ -1,0 +1,5 @@
+# Vi
+*.swp
+# Python
+env/
+__pycache__/
