@@ -620,6 +620,11 @@ Book's code:
 
 https://github.com/abunuwas/microservice-apis/tree/master
 
-GraphQL Faker
+GraphQL Faker:
 
 https://github.com/graphql-kit/graphql-faker?tab=readme-ov-file
+
+Python clients:
+
+- https://github.com/graphql-python/gql
+
