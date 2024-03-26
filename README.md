@@ -78,6 +78,71 @@ type Supplier {
 
 #### Using through types
 
+With edge property we know the ingredients of a product but no the quantity of the ingredient, we can create a `throught type` to solve this:
+
+```bash
+type IngredientRecipe {
+  ingredient: Ingredient!
+  quantity: Float!
+}
+
+type Cake {
+  name: String!
+  ingredients: [IngredientRecipe!]!
+}
+```
+
+### Combine types with unions and interfaces
+
+In GraphQL we can bring various types together under a single type with unions and interfaces. This makes the API easier to consume and maintain.
+
+#### Interfaces
+
+Allow to define common properties of various types.
+
+Example:
+
+```bash
+interface ProductInterface {
+  id: ID!
+  name: String!
+  price: Float
+}
+
+type Cake implements ProductInterface{
+  id: ID!
+  name: String!
+  price: Float
+  hasFilling: Boolean!
+}
+
+type Beverage implements ProductInterface {
+  id: ID!
+  name: String!
+  price: Float
+  hasServeOnIceOption: Boolean!
+}
+```
+
+#### Union
+
+Allow to bring various types under the same type.
+
+Example, `Cacke` and `Beverage` can be treated as a single `Product` type:
+
+```bash
+type Cake implements ProductInterface {
+  id: ID!
+  name: String!
+}
+
+type Beverage implements ProductInterface {
+  id: ID!
+  name: String!
+}
+
+union Product = Beverage | Cake
+```
 
 ## Run
 
