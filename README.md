@@ -623,6 +623,8 @@ Resolvers are Python functions that implement the logic of a query or mutation.
 
 Resolvers let the server know how to produce a value for a type or an attribute.
 
+Resolvers are Python functions that know how to return a valid payload for a query.
+
 ## Run
 
 ### GraphQL Faker
