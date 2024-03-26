@@ -6,6 +6,79 @@ Microservice APIs. Using Python, Flask, FastAPI, OpenAPI and more
 
 This project is the code of the book [Microservice APIs](https://www.manning.com/books/microservice-apis).
 
+## Terminology
+
+## Type system
+
+Each of the resources (entities) managed by the API is modeled as object type.
+
+An object type is a collection of properties.
+
+To define a property we indicate its name and type. The type is defined using GraphQL scalars (String, Int, Float, Boolean, and ID). We can define custom scalars (example: date, URL, email address).
+
+To create a custom scalar, we need to define how the scalar type is validated and serialized in the server implementation.
+
+Example of object type with properties and a custom scalar:
+
+```bash
+scalar Datetime
+
+type Cake {
+  id: ID!
+  name: String!
+  price: Float
+  available: Boolean!
+  scalar Datetime!
+}
+```
+
+The exclamation point `!` means not null. Example of allowed values when using `!` in list properties:
+
+               | [Word] | [Word!] | [Word]! | [Word!]!
+---------------|--------|---------|---------|----------
+null           | Valid  | Valid   | Invalid | Invalid
+[]             | Valid  | Valid   | Valid   | Valid
+["word"]       | Valid  | Valid   | Valid   | Valid
+[null]         | Valid  | Invalid | Valid   | Invalid
+["word", null] | Valid  | Invalid | Valid   | Invalid
+
+### Connections between types
+
+#### Using edge properties
+
+Properties that point to another type an connects these types.
+
+Example, connect the `Ingredient` type with the `Supplier` type by adding a property called `supplier` to `Ingredient` that points to `Supplier`.
+
+
+```bash
+type Ingredient {
+  id: ID!
+  name: String!
+  supplier: Supplier!
+}
+
+type Supplier {
+    id: ID!
+    name: String!
+}
+```
+
+This is an example of one-to-one direct connection.
+
+To create a bidirectional and one-to-many connection modifying the `Supplier` type:
+
+```bash
+type Supplier {
+    id: ID!
+    name: String!
+    ingredients: [Ingredient!]!
+}
+```
+
+#### Using through types
+
+
 ## Run
 
 ### GraphQL Faker
