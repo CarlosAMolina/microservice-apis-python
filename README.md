@@ -167,6 +167,31 @@ type IngredientRecipe {
 }
 ```
 
+### Query document
+
+Is all the text written required to run a Query or a Mutation.
+
+Example:
+
+```bash
+mutation {
+  addProduct(name: "Mocha", type: beverage, input: {price: 10, size: BIG, ingredients: [{ingredient: 1, quantity: 1, unit: LITERS}]}) {
+    ...commonProperties
+  }
+}
+
+fragment commonProperties on ProductInterface {
+  name
+}
+```
+
+GraphQL queries are GET or POST requests with a query document.
+
+If the request is send using:
+
+- GET method, the query document is sent using URL query parameters.
+- POST method, the query document is included in the request payload.
+
 ### Queries
 
 Operations to read data.
