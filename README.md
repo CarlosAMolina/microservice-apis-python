@@ -186,11 +186,11 @@ fragment commonProperties on ProductInterface {
 }
 ```
 
-GraphQL queries are GET or POST requests with a query document.
+GraphQL queries (queries and mutations) are HTTP requests that uses GET or POST methods with a query document.
 
 If the request is send using:
 
-- GET method, the query document is sent using URL query parameters.
+- GET method, the query document is sent using URL query parameters. The query document must be URL encoded (for example, with cURL you have to use `--data-urlencode`, but Python do it automatically with the `requests` library).
 - POST method, the query document is included in the request payload.
 
 ### Queries
