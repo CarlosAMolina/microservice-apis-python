@@ -585,6 +585,10 @@ fragment commonProperties on ProductInterface {
 }
 ```
 
+### Selection set
+
+When a query or mutation returns an object type, the query must include a selection set. This is a list of the properties we want to fetch from the object returned by the query.
+
 ## Run
 
 ### GraphQL Faker
