@@ -625,6 +625,10 @@ Resolvers let the server know how to produce a value for a type or an attribute.
 
 Resolvers are Python functions that know how to return a valid payload for a query.
 
+A resolver needs to be bound to its corresponding object type, we do it with decorators. Ariadne provides bindable classes for each GraphQL type: ObjectType, QueryType, MutationType, UnionType, InterfaceType and EnumType.
+
+To make Ariadne aware of our resolvers, we need to pass our bindable objects as an array to the `make_executable_schema()` function (see the `schema.py` file).
+
 ## Run
 
 ### GraphQL Faker
