@@ -32,6 +32,7 @@ from ariadne.asgi import GraphQL
 # TODO # make_executable_schema() function.
 # TODO schema = make_executable_schema(schema_str, [query])
 
-schema = make_executable_schema((Path(__file__).parent / "web/products.graphql").read_text())
+schema_str = (Path(__file__).parent / "web/products.graphql").read_text()
+schema = make_executable_schema(schema_str)
 
 server = GraphQL(schema, debug=True)
