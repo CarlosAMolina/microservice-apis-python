@@ -27,4 +27,6 @@ type Query {
 
 # To make Ariadne aware of our resolvers, we need to pass our bindable objects as an array to the
 # make_executable_schema() function.
-server = GraphQL(make_executable_schema(schema, [query]), debug=True)
+schema_ = make_executable_schema(schema, [query])
+
+server = GraphQL(schema_, debug=True)
