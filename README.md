@@ -101,6 +101,20 @@ fragment beverageProperties on Beverage {
 }
 ```
 
+### Using input parameters
+
+Call the `products()` query using `ProductsFilter’s` `maxPrice` parameter:
+
+```bash
+{
+  products(input: {maxPrice: 10}) {
+    ...on ProductInterface {
+      name
+    }
+  }
+}
+```
+
 ## Resources
 
 Book:
