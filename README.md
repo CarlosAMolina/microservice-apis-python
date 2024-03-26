@@ -222,7 +222,7 @@ Run the following queries in [GraphiQL](http://localhost:9002/graphql). See the 
 
 Required when a query returns multiple types. For example, `allProducts()` returns the `Product` union type, which is the combination of the `Cake` and `Beverage` types.
 
-Without fragments, the query will fail, and allow us to query properties that not appear in all types.
+Without fragments, the query will fail. Fragments allows us to select the desired properties, we can request properties that not appear in all types.
 
 ##### Inline fragments
 
@@ -325,6 +325,48 @@ Examples:
 This is and advantage over REST where multiple queries would be required.
 
 #### Run multiple queries within a single request
+
+We can run multiple queries within the same request, and the response will contain one dataset for each query.
+
+Example:
+
+```bash
+{
+  allProducts {
+    ...commonProperties
+  }
+  allIngredients {
+    name
+  }
+}
+
+fragment commonProperties on ProductInterface {
+  name
+}
+```
+
+#### Aliasing the queries
+
+Create aliases for the responses returned by the server means changing the key under which the dataset returned by the server is indexed. This can improve the readability of the results. The previous queries are anonymous queries, where the data returned by the server appears under a key named after the name of the query we’re calling.
+
+Example, rename the results of each query, the result of `allProducts()` appears under the `product` alias, and the result of the `allIngredients()` query appears under the `ingredients` alias:
+
+```bash
+{
+  products: allProducts {
+    ...commonProperties
+  }
+  ingredients: allIngredients {
+    name
+  }
+}
+
+fragment commonProperties on ProductInterface {
+  name
+}
+```
+
+If you use the same query multiple times in the same request, with different filters, they must be aliased to avoid errors when retrieving duplicated keys.
 
 ### Mutations
 
