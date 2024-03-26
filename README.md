@@ -431,6 +431,40 @@ type Mutation {
 }
 ```
 
+#### Run mutations
+
+To use mutations, start the query document by qualifying the operation as a `mutation`.
+
+##### Mutations that return a scalar
+
+We don't need to use a selection set.
+
+Example. Returns a boolean:
+
+```bash
+mutation {
+  deleteProduct(id: "asdf")
+}
+```
+
+##### Mutations that return an object type
+
+We must include a selection set.
+
+For example, `addProduct()` returns a value of type `Product` that is the union of the `Cake` and `Beverage` types, so our selection set must use fragments to indicate which type’s properties we want to include in our return payload, we select the `name``property on the `ProductInterface` type:
+
+```bash
+mutation {
+  addProduct(name: "Mocha", type: beverage, input: {price: 10, size: BIG, ingredients: [{ingredient: 1, quantity: 1, unit: LITERS}]}) {
+    ...commonProperties
+  }
+}
+
+fragment commonProperties on ProductInterface {
+  name
+}
+```
+
 ## Run
 
 ### GraphQL Faker
