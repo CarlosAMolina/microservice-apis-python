@@ -22,12 +22,6 @@ from ariadne.asgi import GraphQL
 # TODO     return "".join(random.choice(string.ascii_letters) for _ in range(10))
 
 
-# TODO schema_str = """
-# TODO type Query {
-# TODO         hello: String
-# TODO     }
-# TODO """
-
 schema_str = (Path(__file__).parent / "web/products.graphql").read_text()
 schema = make_executable_schema(schema_str)
 
