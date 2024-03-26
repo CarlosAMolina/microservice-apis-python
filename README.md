@@ -415,6 +415,12 @@ fragment commonProperties on ProductInterface {
 
 If you use the same query multiple times in the same request, with different filters, they must be aliased to avoid errors when retrieving duplicated keys.
 
+#### Query with cURL
+
+```bash
+curl http://localhost:9002/graphql --data-urlencode 'query={allIngredients{name}}'
+```
+
 ### Mutations
 
 Mutations are operations to change the state of the server. Returns a scalar or an object.
@@ -576,6 +582,8 @@ fragment commonProperties on ProductInterface {
 ## Run
 
 ### GraphQL Faker
+
+The GraphQL Faker’s mock server only accepts GET requests.
 
 ```bash
 make run-mock-server
