@@ -29,7 +29,7 @@ The specification defines:
 - A collection of object types.
 - Queries and mutations.
 
-A GraphQL API specification is called a schema, and it’s written in a standard called Schema Definition Language (SDL). Note that the object types can be called schemas too.
+A GraphQL API specification is called a schema, and it’s written in a standard called Schema Definition Language (SDL). Note that the object types can be called schemas or schema model too.
 
 ### Type system (object types and properties)
 
