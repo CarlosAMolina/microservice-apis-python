@@ -641,17 +641,11 @@ GraphQL Faker normally runs on port 9002, and it exposes three endpoints:
 
 ## Resources
 
-Book:
+[Book](https://www.manning.com/books/microservice-apis)
 
-https://www.manning.com/books/microservice-apis
+[Book's code](https://github.com/abunuwas/microservice-apis/tree/master)
 
-Book's code:
-
-https://github.com/abunuwas/microservice-apis/tree/master
-
-GraphQL Faker:
-
-https://github.com/graphql-kit/graphql-faker?tab=readme-ov-file
+[GraphQL Faker](https://github.com/graphql-kit/graphql-faker?tab=readme-ov-file]
 
 Python libraries:
 
@@ -659,5 +653,5 @@ Python libraries:
 
 Python clients:
 
-- https://github.com/graphql-python/gql
+- [gpl](https://github.com/graphql-python/gql)
 
