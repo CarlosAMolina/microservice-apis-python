@@ -204,9 +204,6 @@ Run the following queries in [GraphiQL](http://localhost:9002/graphql). See the 
 {
   allIngredients {
     name
-    stock {
-      unit
-    }
   }
 }
 ```
@@ -288,6 +285,46 @@ Call the `products()` query using `ProductsFilter’s` `maxPrice` parameter:
   }
 }
 ```
+
+#### Navigating the API Graph
+
+To query a property that points to another object type, we use a nested selector:
+
+Examples:
+
+
+```bash
+{
+  allIngredients {
+    name
+    stock {
+      unit
+    }
+  }
+}
+```
+
+```bash
+{
+  allProducts {
+    ...on ProductInterface {
+      name
+      ingredients {
+        ingredient {
+          name
+          supplier {
+            name
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+This is and advantage over REST where multiple queries would be required.
+
+#### Run multiple queries within a single request
 
 ### Mutations
 
