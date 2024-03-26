@@ -621,6 +621,8 @@ When a query or mutation returns an object type, the query must include a select
 
 Resolvers are Python functions that implement the logic of a query or mutation.
 
+Resolvers let the server know how to produce a value for a type or an attribute.
+
 ## Run
 
 ### GraphQL Faker
