@@ -619,6 +619,8 @@ When a query or mutation returns an object type, the query must include a select
 
 ### Resolvers
 
+#### Query resolvers
+
 Resolvers are Python functions that implement the logic of a query or mutation.
 
 Resolvers let the server know how to produce a value for a type or an attribute.
@@ -628,6 +630,18 @@ Resolvers are Python functions that know how to return a valid payload for a que
 A resolver needs to be bound to its corresponding object type, we do it with decorators. Ariadne provides bindable classes for each GraphQL type: ObjectType, QueryType, MutationType, UnionType, InterfaceType and EnumType.
 
 To make Ariadne aware of our resolvers, we need to pass our bindable objects as an array to the `make_executable_schema()` function (see the `schema.py` file).
+
+#### Type resolvers
+
+For queries and mutations that return multiple object types, the server can’t determine what types each of the elements in the list are, we have to implement a type resolver, that is a Python function that determines what type an object is, and it returns the name of the type.
+
+The type resolvers are required in queries and mutations that return union types and object types that implement interfaces.
+
+For example, the `allProducts()` query returns the `Product` type, which is a union of the `Beverage` and `Cake` types, both of which implement the `ProductInterface` type. The `resolve_product_type() indicates the type of the object returned by the `resolve_all_products` resolver.
+
+The type resolver function inspect the properties of the received payload (Ariadne guarantees that the first argument in a resolver is an object) to determine its type.
+
+Example in `web/types.py`.
 
 ## Run
 
