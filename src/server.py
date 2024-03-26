@@ -28,11 +28,11 @@ from ariadne.asgi import GraphQL
 # TODO     }
 # TODO """
 
+schema_str = (Path(__file__).parent / "web/products.graphql").read_text()
+schema = make_executable_schema(schema_str)
+
 # TODO # To make Ariadne aware of our resolvers, we need to pass our bindable objects as an array to the
 # TODO # make_executable_schema() function.
 # TODO schema = make_executable_schema(schema_str, [query])
-
-schema_str = (Path(__file__).parent / "web/products.graphql").read_text()
-schema = make_executable_schema(schema_str)
 
 server = GraphQL(schema, debug=True)
