@@ -643,6 +643,10 @@ GraphQL Faker:
 
 https://github.com/graphql-kit/graphql-faker?tab=readme-ov-file
 
+Python libraries:
+
+- The Ariadne framework, to build an API. Is one of the most popular Python GraphQL libraries. It has beneficts like automatically loading data validation models from the specification.
+
 Python clients:
 
 - https://github.com/graphql-python/gql
