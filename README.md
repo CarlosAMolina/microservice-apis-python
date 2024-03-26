@@ -37,13 +37,14 @@ Properties that are collections of items are defined with lists, that are arrays
 
 The exclamation point `!` means not null. Example of allowed values when using `!` in list properties:
 
-               | [Word] | [Word!] | [Word]! | [Word!]!
----------------|--------|---------|---------|----------
-null           | Valid  | Valid   | Invalid | Invalid
-[]             | Valid  | Valid   | Valid   | Valid
-["word"]       | Valid  | Valid   | Valid   | Valid
-[null]         | Valid  | Invalid | Valid   | Invalid
-["word", null] | Valid  | Invalid | Valid   | Invalid
+|                | [Word] | [Word!] | [Word]! | [Word!]!
+|----------------|--------|---------|---------|----------
+| null           | Valid  | Valid   | Invalid | Invalid
+| []             | Valid  | Valid   | Valid   | Valid
+| ["word"]       | Valid  | Valid   | Valid   | Valid
+| [null]         | Valid  | Invalid | Valid   | Invalid
+| ["word", null] | Valid  | Invalid | Valid   | Invalid
+
 
 ### Connections between types
 
