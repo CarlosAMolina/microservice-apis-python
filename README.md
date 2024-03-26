@@ -21,9 +21,17 @@ Advantages:
 
 We use SQL to define schemas for our database tables and we can use GraphQL to write specifications that describe the type of data that can be queried from our servers.
 
-A GraphQL API specification is called a schema, and it’s written in a standard called Schema Definition Language (SDL).
 
-### Type system
+For example, the API specification is the file `src/web/schema.graphql`.
+
+The specification defines:
+
+- A collection of object types.
+- Queries and mutations.
+
+A GraphQL API specification is called a schema, and it’s written in a standard called Schema Definition Language (SDL). Note that the object types can be called schemas too.
+
+### Type system (object types and properties)
 
 Each of the resources (entities) managed by the API is modeled as object type.
 
