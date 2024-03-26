@@ -169,7 +169,7 @@ type IngredientRecipe {
 
 ### Query document
 
-Is all the text written required to run a Query or a Mutation.
+Is all the text written required to run a Query or a Mutation. If we use parametrized queries and mutations (see the corresponding section), the JSON used as input is not part of the query document; in GraphiQL, these mutation parameters are part of the `Query variables` section.
 
 Example:
 
@@ -487,6 +487,88 @@ mutation {
 
 fragment commonProperties on ProductInterface {
   name
+}
+```
+
+### Parametrized queries and mutations
+
+Previosly we pass each value in the parameter of the function, with parametrized queries the query document is easier to read and maintain because we decouple the query/mutation calls from the data.
+
+To work with parametrized queries and mutations:
+
+- First:
+  - We create a function wrapper around the query/mutation.
+  - The parameterized arguments/variables carry a leading dollar ($) sign.
+  - In the wrapper signature, we specify the type of the parametrized arguments. In the following example, the wrapper is `CreateProduct`.
+  - The parameters of the query/mutation has been parametrized. See the parameters of the `addProduct` mutation in the following example.
+- After that, we assign values for the query/mutation parameters in a query variables object, this is a JSON document.
+
+For example, if we parametrize the `addProduct` mutation call:
+
+```bash
+type Mutation {
+    addProduct(name: String!, type: ProductType!, input: AddProductInput!): Product!
+}
+```
+
+The parametrized result is:
+
+```bash
+# Query document
+mutation CreateProduct(
+  $name: String!
+  $type: ProductType!
+  $input: AddProductInput!
+) {
+  addProduct(name: $name, type: $type, input: $input) {
+    ...commonProperties
+  }
+}
+
+fragment commonProperties on ProductInterface {
+  name
+}
+# Query variables (in GraphiQL we set these query variables within the Query Variables panel)
+{
+  "name": "Mocha",
+  "type": "beverage",
+  "input": {
+    "price": 10,
+    "size": "BIG",
+    "ingredients": [{"ingredient": 1, "quantity": 1, "unit": "LITERS"}]
+  }
+}
+```
+
+We can wrapping more than one queries or mutations within the same query document. In these cases, all the parameterized arguments must be defined within the wrapper’s function signature. Example to create and delete:
+
+```bash
+# Query document
+mutation CreateAndDeleteProduct(
+  $name: String!
+  $type: ProductType!
+  $input: AddProductInput!
+  $id: ID!
+) {
+  addProduct(name: $name, type: $type, input: $input) {
+    ...commonProperties
+  }
+  deleteProduct(id: $id)
+}
+
+fragment commonProperties on ProductInterface {
+  name
+}
+# Query variables
+{
+  "name": "Mocha",
+  "type": "beverage",
+  "input": {
+    "price": 10,
+    "size": "BIG",
+    "ingredients": [{"ingredient": 1, "quantity": 1, "unit": "LITERS"}]
+  },
+  "id": "asdf"
 }
 ```
 
