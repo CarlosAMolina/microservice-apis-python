@@ -22,7 +22,7 @@ Advantages:
 We use SQL to define schemas for our database tables and we can use GraphQL to write specifications that describe the type of data that can be queried from our servers.
 
 
-For example, the API specification is the file `src/web/schema.graphql`.
+For example, the API specification is the file `src/web/products.graphql`.
 
 The specification defines:
 
