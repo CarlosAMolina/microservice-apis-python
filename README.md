@@ -274,7 +274,28 @@ fragment beverageProperties on Beverage {
 
 #### Using input parameters
 
-Call the `products()` query using `ProductsFilter’s` `maxPrice` parameter:
+Input parameters are similar to object types, but they’re meant for use as parameters for a GraphQL query or mutation.
+
+Example:
+- query with input type parameters: `products`.
+- query with parameter: `product`.
+
+```bash
+input ProductsFilter {
+    maxPrice: Float
+    resultsPerPage: Int = 10
+    page: Int = 1
+}
+
+type Query {
+    products(input: ProductsFilter!): [Product!]!
+    product(id: ID!): Product
+}
+```
+
+Input type parameters requires to use `{` and `}`.
+
+Example. Call the `products()` query using `ProductsFilter’s` `maxPrice` parameter:
 
 ```bash
 {
