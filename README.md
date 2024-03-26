@@ -8,6 +8,21 @@ This project is the code of the book [Microservice APIs](https://www.manning.com
 
 ## Theory
 
+### GraphQL
+
+Is a popular protocol for building web APIs.
+
+Advantages:
+
+- Gives API clients full control over the data to fetch.
+- Good for situations with highly interconnected data.
+
+### Schema
+
+We use SQL to define schemas for our database tables and we can use GraphQL to write specifications that describe the type of data that can be queried from our servers.
+
+A GraphQL API specification is called a schema, and it’s written in a standard called Schema Definition Language (SDL).
+
 ### Type system
 
 Each of the resources (entities) managed by the API is modeled as object type.
@@ -593,6 +608,10 @@ fragment commonProperties on ProductInterface {
 ### Selection set
 
 When a query or mutation returns an object type, the query must include a selection set. This is a list of the properties we want to fetch from the object returned by the query.
+
+### Resolvers
+
+Resolvers are Python functions that implement the logic of a query or mutation.
 
 ## Run
 
