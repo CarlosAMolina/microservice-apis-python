@@ -1,3 +1,5 @@
+from pathlib import Path
+
 # TODO import random
 # TODO import string
 
@@ -20,16 +22,16 @@ from ariadne.asgi import GraphQL
 # TODO     return "".join(random.choice(string.ascii_letters) for _ in range(10))
 
 
-schema_str = """
-type Query {
-        hello: String
-    }
-"""
+# TODO schema_str = """
+# TODO type Query {
+# TODO         hello: String
+# TODO     }
+# TODO """
 
 # TODO # To make Ariadne aware of our resolvers, we need to pass our bindable objects as an array to the
 # TODO # make_executable_schema() function.
 # TODO schema = make_executable_schema(schema_str, [query])
 
-schema = make_executable_schema(schema_str)
+schema = make_executable_schema((Path(__file__).parent / "web/products.graphql").read_text())
 
 server = GraphQL(schema, debug=True)
