@@ -19,7 +19,7 @@ def resolve_hello(*_):
     return "".join(random.choice(string.ascii_letters) for _ in range(10))
 
 
-schema = """
+schema_str = """
 type Query {
         hello: String
     }
@@ -27,6 +27,6 @@ type Query {
 
 # To make Ariadne aware of our resolvers, we need to pass our bindable objects as an array to the
 # make_executable_schema() function.
-schema_ = make_executable_schema(schema, [query])
+schema = make_executable_schema(schema_str, [query])
 
-server = GraphQL(schema_, debug=True)
+server = GraphQL(schema, debug=True)
