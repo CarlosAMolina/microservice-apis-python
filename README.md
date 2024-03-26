@@ -246,9 +246,14 @@ Run the following queries in [GraphiQL](http://localhost:9002/graphql). See the 
 
 #### Fragments
 
+
 Required when a query returns multiple types. For example, `allProducts()` returns the `Product` union type, which is the combination of the `Cake` and `Beverage` types.
 
-Without fragments, the query will fail. Fragments allows us to select the desired properties, we can request properties that not appear in all types.
+Without fragments, the query will fail.
+
+Fragments are selections of properties on a specific type. We can request properties that not appear in all types (see the following examples).
+
+Fragments are prefixed by the spread operator (three dots).
 
 ##### Inline fragments
 
