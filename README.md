@@ -421,6 +421,12 @@ If you use the same query multiple times in the same request, with different fil
 curl http://localhost:9002/graphql --data-urlencode 'query={allIngredients{name}}'
 ```
 
+#### Query with Python
+
+```bash
+python src/request.py
+```
+
 ### Mutations
 
 Mutations are operations to change the state of the server. Returns a scalar or an object.
