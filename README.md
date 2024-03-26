@@ -8,7 +8,7 @@ This project is the code of the book [Microservice APIs](https://www.manning.com
 
 ## Terminology
 
-## Type system
+### Type system
 
 Each of the resources (entities) managed by the API is modeled as object type.
 
@@ -29,8 +29,11 @@ type Cake {
   price: Float
   available: Boolean!
   scalar Datetime!
+  comments: [String!]
 }
 ```
+
+Properties that are collections of items are defined with lists, that are arrays of types, defined with square brackets (`[` and `]`).
 
 The exclamation point `!` means not null. Example of allowed values when using `!` in list properties:
 
@@ -142,6 +145,95 @@ type Beverage implements ProductInterface {
 }
 
 union Product = Beverage | Cake
+```
+
+### Enumerations
+
+Constrain the values.
+
+Example:
+
+```bash
+enum MeasureUnit {
+  LITERS
+  KILOGRAMS
+  UNITS
+}
+
+type IngredientRecipe {
+    ingredient: Ingredient!
+    quantity: Float!
+    unit: MeasureUnit!
+}
+```
+
+### Queries
+
+Operations to read data.
+
+Example of queries definition one does take any parameters and the other takes one:
+
+```bash
+type Query {
+  allProducts: [Products!]!
+  products(available: Boolean = true, maxPrice: Float): Product
+}
+```
+
+Refactor the parameters using input types:
+
+```bash
+input ProductsFilter {
+  available: Boolean = true
+  maxPrice: Float
+}
+
+type Query {
+  allProducts: [Products!]!
+  products(inpunt ProductsFilter): Product
+}
+```
+
+### Mutations
+
+Mutations are operations to change the state of the server. Returns a scalar or an object.
+
+Example:
+
+```bash
+enum ProductType {
+  cake
+  beverage
+}
+
+type Mutation {
+  addProduct(
+    name: String!
+    type: ProductType!
+    price: String
+  ): Product!
+}
+```
+
+Refactor the parameters using input types:
+
+```bash
+input AddProductsInput {
+  type: ProductType!
+  price: String
+}
+
+enum ProductType {
+  cake
+  beverage
+}
+
+type Mutation {
+  addProduct(
+    name: String!
+    input: AddProductsInput
+  ): Product!
+}
 ```
 
 ## Run
