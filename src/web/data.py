@@ -1,5 +1,14 @@
 from datetime import datetime
 
+suppliers = [
+    {
+        "id": "92f2daae-a4f8-4aae-8d74-51dd74e5de6d",
+        "name": "Milk Supplier",
+        "address": "77 Milk Way",
+        "contactNumber": "0987654321",
+        "email": "milk@milksupplier.com",
+    },
+]
 
 ingredients = [
     {

@@ -4,12 +4,14 @@ from datetime import datetime
 import copy
 
 from ariadne import InterfaceType
+from ariadne import ObjectType
 from ariadne import UnionType
 from ariadne import ScalarType
 
 from web import data
 
 product_type = UnionType("Product")
+ingredient_type = ObjectType("Ingredient")
 product_interface = InterfaceType("ProductInterface")
 
 
@@ -41,3 +43,11 @@ def resolve_product_ingredients(product, _):
             if ingredient["id"] == ingredient_recipe["ingredient"]:
                 ingredient_recipe["ingredient"] = ingredient
     return recipe
+
+
+@ingredient_type.field("supplier")
+def resolve_ingredient_suppliers(ingredient, _):
+    if ingredient.get("supplier") is not None:
+        for supplier in data.suppliers:
+            if supplier["id"] == ingredient["supplier"]:
+                return supplier
