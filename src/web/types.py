@@ -13,6 +13,7 @@ from web import data
 product_type = UnionType("Product")
 ingredient_type = ObjectType("Ingredient")
 product_interface = InterfaceType("ProductInterface")
+datetime_scalar = ScalarType("Datetime")
 
 
 @product_type.type_resolver
@@ -20,9 +21,6 @@ def resolve_product_type(obj, *_):
     if "hasFilling" in obj:
         return "Cake"
     return "Beverage"
-
-
-datetime_scalar = ScalarType("Datetime")
 
 
 @datetime_scalar.serializer
