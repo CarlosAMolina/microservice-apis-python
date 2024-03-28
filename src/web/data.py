@@ -19,7 +19,7 @@ ingredients = [
             "unit": "LITRES",
         },
         "supplier": "92f2daae-a4f8-4aae-8d74-51dd74e5de6d",
-        "products": [],
+        "products": ["6961ca64-78f3-41d4-bc3b-a63550754bd8"],
         "lastUpdated": datetime.utcnow(),
     },
 ]

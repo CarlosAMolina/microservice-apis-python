@@ -45,6 +45,11 @@ def resolve_product_ingredients(product, _):
     return recipe
 
 
+@ingredient_type.field("products")
+def resolve_ingredient_products(ingredient, _):
+    return [product for product in data.products if product["id"] in ingredient["products"]]
+
+
 @ingredient_type.field("supplier")
 def resolve_ingredient_suppliers(ingredient, _):
     if ingredient.get("supplier") is not None:
