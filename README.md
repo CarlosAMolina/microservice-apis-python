@@ -373,6 +373,21 @@ Pagination example:
 }
 ```
 
+#### Request custom scalar types
+
+Example Datetime:
+
+```bash
+{
+  allProducts {
+    ...on ProductInterface {
+      name,
+      lastUpdated
+    }
+  }
+}
+```
+
 #### Navigating the API Graph
 
 To query a property that points to another object type, we use a nested selector:
@@ -663,6 +678,21 @@ Example in `web/types.py`.
 When a Query o Mutation takes parameters Ariadne parse them to the resolvers as keyword arguments.
 
 Ariadne’s resolvers always get two positional parameters by default: `obj` and `info` (see https://ariadnegraphql.org/docs/resolvers.html), when they are not required, we use the python convention `*_` to omit positional parameters.
+
+#### Resolvers for custom scalar types
+
+For example, datetimes are not a default GraphQL scalar type. To handle them by Ariadne we have to implement a resolver for it.
+
+The server must be able to perform these three actions:
+
+- Serialization: when a user request data to the server, each Python type must be converted to strings, numeric, types, etc.
+- Deserialization: when a user send data to the server, Ariadne deserializes it into Python types.
+- Validation: GraphQL enforces validation of each scalar and type. Ariadne knows how to validate GraphQL’s built-in scalars, custom scalars validation must be defined.
+
+To perform these actions, Ariadne provides the `ScalarType` class:
+
+- Serialization: we use ScalarType’s serializer() decorator. For example to serialize datetime objects into ISO standard date format, we can use the isoformat() method from the datetime Python library.
+- Validation and deserialization: `ScalarType` has the `value_parser()` decorator. For example, for Datetime scalars sent by the user, whe use the Python’s `datetime.fromisoformat()` that will raise an exception if invalid value.
 
 ## Run
 
