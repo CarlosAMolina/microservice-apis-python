@@ -21,35 +21,23 @@ def resolve_all_ingredients(*_):
 def resolve_all_products(*_):
     return data.products
 
- 
-@query.field('products')
-def resolve_products(*_, input: "ProductsFilter" = None):
+
+@query.field("products")
+def resolve_products(*_, input=None):
     """
-    input type is ProductsFilter, see products.graphql
+    input: ProductsFilter (see products.graphql)
     """
     # Copy the products list.
     filtered = [product for product in data.products]
     if input is None:
         return filtered
-    filtered = [
-        product for product in filtered
-        if product['available'] is input['available']
-    ]
-    if input.get('minPrice') is not None:
-        filtered = [
-            product for product in filtered
-            if product['price'] >= input['minPrice']
-        ]
-    if input.get('maxPrice') is not None:
-        filtered = [
-            product for product in filtered
-            if product['price'] <= input['maxPrice']
-        ]
-    filtered.sort(
-        key=lambda product: product.get(input['sortBy'], 0),
-        reverse=input['sort'] == 'DESCENDING'
-    )
-    return get_page(filtered, input['resultsPerPage'], input['page'])
+    filtered = [product for product in filtered if product["available"] is input["available"]]
+    if input.get("minPrice") is not None:
+        filtered = [product for product in filtered if product["price"] >= input["minPrice"]]
+    if input.get("maxPrice") is not None:
+        filtered = [product for product in filtered if product["price"] <= input["maxPrice"]]
+    filtered.sort(key=lambda product: product.get(input["sortBy"], 0), reverse=input["sort"] == "DESCENDING")
+    return get_page(filtered, input["resultsPerPage"], input["page"])
 
 
 def get_page(items, items_per_page, page):
@@ -57,4 +45,3 @@ def get_page(items, items_per_page, page):
     start = items_per_page * page if page > 0 else page
     stop = start + items_per_page
     return list(islice(items, start, stop))
-

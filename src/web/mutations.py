@@ -10,7 +10,11 @@ mutation = MutationType()
 
 
 @mutation.field("addProduct")
-def resolve_add_product(*_, name, type, input: "AddProductInput") -> "Product":
+def resolve_add_product(*_, name, type, input):
+    """
+    input: AddProductInput
+    return: Product
+    """
     product = {
         "id": uuid.uuid4(),
         "name": name,
