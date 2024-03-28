@@ -747,6 +747,48 @@ GraphQL Faker normally runs on port 9002, and it exposes three endpoints:
 - [/graphql](http://localhost:9002/graphql): GraphiQL interface to run queries.
 - /voyager: displays the relationships and dependencies of the types in the API.
 
+## Endpoints
+
+```bash
+{
+  allIngredients {
+    id
+    name
+    stock {
+      quantity
+      unit
+    }
+    products {
+      ... on ProductInterface {
+        id
+        name
+        price
+        size
+        available
+        lastUpdated
+      },
+      ... on Beverage {
+        hasCreamOnTopOption
+        hasServeOnIceOption
+      }
+      ... on Cake {
+        hasFilling
+        hasNutsToppingOption
+      }
+    }
+    supplier {
+      id
+      name
+      address
+      contactNumber
+      email
+    }
+    description
+    lastUpdated
+  }
+}
+```
+
 ## Resources
 
 [Book](https://www.manning.com/books/microservice-apis)
