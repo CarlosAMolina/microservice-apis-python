@@ -746,9 +746,9 @@ GraphQL Faker normally runs on port 9002, and it exposes three endpoints:
 
 [GraphQL Faker](https://github.com/graphql-kit/graphql-faker?tab=readme-ov-file)
 
-Python libraries:
+[Python frameowrks](https://graphql.org/code/):
 
-- The Ariadne framework, to build an API. Is one of the most popular Python GraphQL libraries. It can handle schema validation and serialization directly from the API specification.
+- The Ariadne framework, to build an API. Is one of the most popular Python GraphQL libraries. It follows a schema-first approach, which means we first design the API, and then we implement the server against the specification. It can handle schema, request a response validations directly using the specification.
 
 Python clients:
 
