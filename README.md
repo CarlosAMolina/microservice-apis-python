@@ -220,6 +220,8 @@ If the request is send using:
 
 Operations to read data.
 
+In GraphQL, the query type represents the collection of all queries available in a schema.
+
 Example of queries definition one does take any parameters and the other takes one:
 
 ```bash
@@ -651,7 +653,14 @@ Resolvers are Python functions that implement the logic of a query or mutation.
 
 By convention, we prefix our resolvers’ names with `resolve_`.
 
-A resolver needs to be bound to its corresponding object type, we do it with decorators. Ariadne provides bindable classes for each GraphQL type: ObjectType, QueryType, MutationType, UnionType, InterfaceType and EnumType.
+A resolver needs to be bound to its corresponding object type, we do it with decorators. Ariadne provides bindable classes for each GraphQL type:
+
+- ObjectType
+- QueryType
+- MutationType
+- UnionType
+- InterfaceType
+- EnumType
 
 To make Ariadne aware of our resolvers, we need to pass our bindable objects as an array to the `make_executable_schema()` function (see the `schema.py` file).
 
