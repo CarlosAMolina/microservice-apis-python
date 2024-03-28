@@ -698,7 +698,29 @@ To perform these actions, Ariadne provides the `ScalarType` class:
 
 Implement resolvers for the fields of an object type is necessary when working with fields that map to other GraphQL types.
 
-For example, the `Products` type has the field `ingredients` which maps to an array of `IngredientRecipe`
+For example, the `Products` type has the field `ingredients` which maps to an array of `IngredientRecipe` which has an `ingredient` field, which maps to an `Ingredient` object type.
+
+Imagine that our data has this value:
+
+```bash
+ingredients = [
+  {
+    'ingredient': '602f2ab3-97bd-468e-a88b-bb9e00531fd0',
+    'quantity': 100.00,
+    'unit': 'LITRES',
+  }
+```
+
+The `ingredient` points to an ID instead of an `Ingredient` type and the queries, for example the `allProducts()` query, will fail because the form is incorrect. A solution is to modify the products payload in the resolver defined in `queries.py` by replacing the ingredient's ID with the ingredient, but new Python code is required, we have a better solution that makes easy to maintain the code.
+
+With GraphQL we can create resolvers for specific fields of an object. In the previous example, we should create the `resolve_product_ingredients()` resolver for the `ingredients` property of a `Product`, this new resolver returns a valid payload for the ingredients property of a product.
+
+This is a better approach because:
+
+- Every resolver does only one thing.
+- We avoid repetition, having a single resolver that takes care of updating the ingredients property in product payloads, we avoid having to perform this operation in every resolver that returns a product type.
+
+As a downside, property resolvers may be more difficult to trace and debug because the error won't appear in the `allProducts()` resolver, we must know that there is a resolver for products’ ingredients.
 
 ## Run
 
@@ -722,7 +744,7 @@ GraphQL Faker normally runs on port 9002, and it exposes three endpoints:
 
 [Book's code](https://github.com/abunuwas/microservice-apis/tree/master)
 
-[GraphQL Faker](https://github.com/graphql-kit/graphql-faker?tab=readme-ov-file]
+[GraphQL Faker](https://github.com/graphql-kit/graphql-faker?tab=readme-ov-file)
 
 Python libraries:
 
