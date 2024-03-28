@@ -7,7 +7,7 @@ ingredients = [
         "name": "Milk",
         "stock": {
             "quantity": 100.00,
-            "unit": "LITERS",
+            "unit": "LITRES",
         },
         "supplier": "92f2daae-a4f8-4aae-8d74-51dd74e5de6d",
         "products": [],

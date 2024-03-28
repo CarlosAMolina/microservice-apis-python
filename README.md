@@ -179,7 +179,7 @@ Example:
 
 ```bash
 enum MeasureUnit {
-  LITERS
+  LITRES
   KILOGRAMS
   UNITS
 }
@@ -199,7 +199,7 @@ Example:
 
 ```bash
 mutation {
-  addProduct(name: "Mocha", type: beverage, input: {price: 10, size: BIG, ingredients: [{ingredient: 1, quantity: 1, unit: LITERS}]}) {
+  addProduct(name: "Mocha", type: beverage, input: {price: 10, size: BIG, ingredients: [{ingredient: 1, quantity: 1, unit: LITRES}]}) {
     ...commonProperties
   }
 }
@@ -548,7 +548,7 @@ For example, `addProduct()` returns a value of type `Product` that is the union 
 
 ```bash
 mutation {
-  addProduct(name: "Mocha", type: beverage, input: {price: 10, size: BIG, ingredients: [{ingredient: 1, quantity: 1, unit: LITERS}]}) {
+  addProduct(name: "Mocha", type: beverage, input: {price: 10, size: BIG, ingredients: [{ingredient: 1, quantity: 1, unit: LITRES}]}) {
     ...commonProperties
   }
 }
@@ -604,7 +604,7 @@ fragment commonProperties on ProductInterface {
   "input": {
     "price": 10,
     "size": "BIG",
-    "ingredients": [{"ingredient": 1, "quantity": 1, "unit": "LITERS"}]
+    "ingredients": [{"ingredient": 1, "quantity": 1, "unit": "LITRES"}]
   }
 }
 ```
@@ -635,7 +635,7 @@ fragment commonProperties on ProductInterface {
   "input": {
     "price": 10,
     "size": "BIG",
-    "ingredients": [{"ingredient": 1, "quantity": 1, "unit": "LITERS"}]
+    "ingredients": [{"ingredient": 1, "quantity": 1, "unit": "LITRES"}]
   },
   "id": "asdf"
 }
@@ -693,6 +693,12 @@ To perform these actions, Ariadne provides the `ScalarType` class:
 
 - Serialization: we use ScalarType’s serializer() decorator. For example to serialize datetime objects into ISO standard date format, we can use the isoformat() method from the datetime Python library.
 - Validation and deserialization: `ScalarType` has the `value_parser()` decorator. For example, for Datetime scalars sent by the user, whe use the Python’s `datetime.fromisoformat()` that will raise an exception if invalid value.
+
+#### Field resolvers
+
+Implement resolvers for the fields of an object type is necessary when working with fields that map to other GraphQL types.
+
+For example, the `Products` type has the field `ingredients` which maps to an array of `IngredientRecipe`
 
 ## Run
 
