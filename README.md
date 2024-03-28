@@ -361,6 +361,18 @@ Example. Call the `products()` query using `ProductsFilter’s` `maxPrice` param
 }
 ```
 
+Pagination example:
+
+```bash
+{
+  products(input: {resultsPerPage: 1, page: 1}) {
+    ...on ProductInterface {
+      name
+    }
+  }
+}
+```
+
 #### Navigating the API Graph
 
 To query a property that points to another object type, we use a nested selector:
@@ -642,6 +654,10 @@ For example, the `allProducts()` query returns the `Product` type, which is a un
 The type resolver function inspect the properties of the received payload (Ariadne guarantees that the first argument in a resolver is an object) to determine its type.
 
 Example in `web/types.py`.
+
+#### Parameters in resolvers
+
+When a Query o Mutation takes parameters Ariadne parse them to the resolvers as keyword arguments.
 
 ## Run
 
